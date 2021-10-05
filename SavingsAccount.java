@@ -46,11 +46,6 @@ public class SavingsAccount extends BankAccount {
 		}
 	}
 
-	//refactored: replace temp with query
-	double balance(double amount) {
-		return super.getBalance() - amount;
-	}
-
 	/**
 	 * withdraw: This method takes in an amount, makes sure that there are
 	 * sufficient funds in the balance to withdraw from.

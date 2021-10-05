@@ -72,6 +72,12 @@ public abstract class BankAccount extends Customer {
 		return accountNumber;
 	}
 
+	//refactored: replace temp with query
+	//refactored: pull up method
+	double balance(double amount) {
+		return getBalance() - amount;
+	}
+
 	@Override
 	public String toString() {
 		return "(" + accountHolder + ") " + accountNumber + ": " + balance;

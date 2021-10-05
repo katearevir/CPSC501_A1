@@ -45,10 +45,7 @@ public class ChequingAccount extends BankAccount {
 		}
 	}
 
-	//refactored: replace temp with query
-	double balance(double amount) {
-		return super.getBalance() - amount;
-	}
+	
 
 	// Overridden methods
 
