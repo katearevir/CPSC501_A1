@@ -45,6 +45,11 @@ public class ChequingAccount extends BankAccount {
 		}
 	}
 
+	//refactored: replace temp with query
+	double balance(double amount) {
+		return super.getBalance() - amount;
+	}
+
 	// Overridden methods
 
 	/**
@@ -54,9 +59,8 @@ public class ChequingAccount extends BankAccount {
 	 */
 	@Override
 	public boolean sufficientFunds(double amount) {
-		double diff = super.getBalance() - amount;
-		double abs = Math.abs(diff);
-		if (diff >= 0 || diff <= 0 && abs <= overdraftAmount) { 
+		double abs = Math.abs(balance(amount));
+		if (balance(amount) >= 0 || balance(amount) <= 0 && abs <= overdraftAmount) { 
 			return true;
 		} 
 		else {
@@ -71,8 +75,7 @@ public class ChequingAccount extends BankAccount {
 	 */
 	@Override
 	public void withdraw(double amount) {
-		double balance = super.getBalance() - amount;
-		if (balance < 0) {
+		if (balance(amount) < 0) {
 			amount += overdraftFee;
 			super.withdraw(amount);
 		} else
@@ -86,11 +89,10 @@ public class ChequingAccount extends BankAccount {
 	 */
 	@Override
 	protected double getMonthlyFeesAndInterest() {
-		double balance = super.getBalance();
-		if (balance >= 0) {
+		if (balance(0) >= 0) {
 			return 0.0;
 		} else {
-			double change = 0.2 * balance;
+			double change = 0.2 * balance(0);
 			return change;
 		}
 	}

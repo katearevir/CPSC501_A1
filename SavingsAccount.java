@@ -46,16 +46,20 @@ public class SavingsAccount extends BankAccount {
 		}
 	}
 
+	//refactored: replace temp with query
+	double balance(double amount) {
+		return super.getBalance() - amount;
+	}
+
 	/**
 	 * withdraw: This method takes in an amount, makes sure that there are
 	 * sufficient funds in the balance to withdraw from.
 	 */
 	@Override
 	public void withdraw(double amount) {
-		double m = super.getBalance() - minimumBalance;
-		if (m < amount) {
+		if (balance(minimumBalance) < amount) {
 			super.withdraw(0.0);
-		} else if (amount <= super.getBalance() && amount > 0) {
+		} else if (amount <= balance(0) && amount > 0) {
 			super.withdraw(amount);
 		}
 	}
@@ -77,9 +81,7 @@ public class SavingsAccount extends BankAccount {
 	 */
 	@Override
 	protected double getMonthlyFeesAndInterest() {
-		double m = super.getBalance();
-		double bal = annualInterestRate / 12 * m;
-		return bal;
+		return annualInterestRate / 12 * balance(0);
 	}
 
 	public static void main(String[] args) {
