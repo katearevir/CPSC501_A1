@@ -40,11 +40,11 @@ public class Customer {
 		return name + " " + customerID;
 	}
 	
-	public void addCustomer(Customer c){
+	public void addCustomerToCollection(Customer c){
         customers.add(c);
     }
 
-	public Customer getCustomer(int id){
+	public Customer getCustomerFromCollection(int id){
         for(int i = 0; i < customers.size(); i++)
         {
             if(customers.get(i).getID() == id)
