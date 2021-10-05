@@ -110,15 +110,15 @@ public abstract class BankAccount extends Customer {
 	}
 
 	//refactored: Move method
-	public void addChequingAccount(ChequingAccount cAcc){
+	public void addChequingAccountToCollection(ChequingAccount cAcc){
         cAccs.add(cAcc);
     }
 
-    public void addSavingsAccount(SavingsAccount sAcc){
+    public void addSavingsAccountToCollection(SavingsAccount sAcc){
         sAccs.add(sAcc);
     }
 
-    public ChequingAccount getChequingAccount(Customer c){
+    public ChequingAccount getChequingAccountFromCollection(Customer c){
         for(int i = 0; i < cAccs.size(); i++)
         {
             if (cAccs.get(i).getAccountHolder().equals(c))
@@ -129,7 +129,7 @@ public abstract class BankAccount extends Customer {
         return null;
     }
 
-    public SavingsAccount getSavingsAccount(Customer c){
+    public SavingsAccount getSavingsAccountFromCollection(Customer c){
         for(int i = 0; i < sAccs.size(); i++)
         {
             if(sAccs.get(i).getAccountHolder().equals(c))
