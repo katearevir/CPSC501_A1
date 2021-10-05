@@ -1,3 +1,5 @@
+import java.util.List;
+import java.util.ArrayList;
 
 public abstract class BankAccount extends Customer {
 
@@ -5,6 +7,8 @@ public abstract class BankAccount extends Customer {
 	private double balance;
 	private String accountNumber;
 	private Customer accountHolder;
+	private List<ChequingAccount> cAccs = new ArrayList<ChequingAccount>();
+    private List<SavingsAccount> sAccs = new ArrayList<SavingsAccount>();
 	// add account type
 
 	// Constructors
@@ -104,6 +108,38 @@ public abstract class BankAccount extends Customer {
 			return false;
 		}
 	}
+
+	//refactored: Move method
+	public void addChequingAccount(ChequingAccount cAcc){
+        cAccs.add(cAcc);
+    }
+
+    public void addSavingsAccount(SavingsAccount sAcc){
+        sAccs.add(sAcc);
+    }
+
+    public ChequingAccount getChequingAccount(Customer c){
+        for(int i = 0; i < cAccs.size(); i++)
+        {
+            if (cAccs.get(i).getAccountHolder().equals(c))
+            {
+                return cAccs.get(i);
+            }
+        }
+        return null;
+    }
+
+    public SavingsAccount getSavingsAccount(Customer c){
+        for(int i = 0; i < sAccs.size(); i++)
+        {
+            if(sAccs.get(i).getAccountHolder().equals(c))
+            {
+                return sAccs.get(i);
+            }
+        }
+
+        return null;
+    }
 
 	public static void main(String[] args) {
 
