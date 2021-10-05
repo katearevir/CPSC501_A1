@@ -78,6 +78,19 @@ public abstract class BankAccount extends Customer {
 		return getBalance() - amount;
 	}
 
+	/**
+	transfer: This method takes in an amount and an account to transfer to. It makes sure that the balance
+	in the account to transfer from has sufficient funds and then subtracts the amount from the current account
+	and then adds the amount to the new account in the parameter.
+	*/
+	//refactored: pull up method
+	public void transfer(double amount, BankAccount account) {
+		if (sufficientFunds(amount) == true) {
+			account.deposit(amount);
+			withdraw(amount);
+		}
+	}
+
 	@Override
 	public String toString() {
 		return "(" + accountHolder + ") " + accountNumber + ": " + balance;
