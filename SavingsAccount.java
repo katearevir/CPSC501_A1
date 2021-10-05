@@ -57,9 +57,14 @@ public class SavingsAccount extends BankAccount {
 	 */
 	@Override
 	public void withdraw(double amount) {
-		if (balance(minimumBalance) < amount) {
+		//refactored: Introduce explaining variables
+		final boolean amountWithdrawnMoreThanMinimumBalance = balance(minimumBalance) < amount;
+		final boolean balanceMoreThanAmount = amount <= balance(0);
+		final boolean amountIsNotNegative = amount > 0;
+
+		if (amountWithdrawnMoreThanMinimumBalance) {
 			super.withdraw(0.0);
-		} else if (amount <= balance(0) && amount > 0) {
+		} else if (balanceMoreThanAmount && amountIsNotNegative) {
 			super.withdraw(amount);
 		}
 	}

@@ -60,7 +60,12 @@ public class ChequingAccount extends BankAccount {
 	@Override
 	public boolean sufficientFunds(double amount) {
 		double abs = Math.abs(balance(amount));
-		if (balance(amount) >= 0 || balance(amount) <= 0 && abs <= overdraftAmount) { 
+		//refactored: Introduce explaining variables
+		final boolean amountisLessThanBalance =  balance(amount) >= 0;
+		final boolean amountisMoreThanBalance = balance(amount) <= 0;
+		final boolean absValueLessThanOverdraft = abs <= overdraftAmount;
+
+		if (amountisLessThanBalance || amountisMoreThanBalance && absValueLessThanOverdraft) { 
 			return true;
 		} 
 		else {
