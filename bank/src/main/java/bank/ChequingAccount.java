@@ -1,3 +1,5 @@
+package bank;
+
 import java.lang.Math;
 
 public class ChequingAccount extends BankAccount {
