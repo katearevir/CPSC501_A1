@@ -21,7 +21,10 @@ public class Customer {
 	public Customer(String nam, int custID) {
 		setName(nam);
 		setCustomerID(custID);
-		
+	}
+
+	public Customer(List<Customer> customers){
+		this.customers = customers;
 	}
 	
 	public void setName(String x) {
@@ -41,9 +44,11 @@ public class Customer {
 		return name + " " + customerID;
 	}
 	
+	/*
 	public void addCustomerToCollection(Customer c){
         customers.add(c);
     }
+	*/
 
 	public Customer getCustomerFromCollection(int id){
         for(int i = 0; i < customers.size(); i++)
