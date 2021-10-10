@@ -32,8 +32,8 @@ public class BankAccountTest {
         ChequingAccount jane = new ChequingAccount(c2, 1000, 10);
         BankAccount b = new BankAccClass();
 
-        b.addChequingAccountToCollection(john);
-        b.addChequingAccountToCollection(jane);
+        b.addAccountToCollection(john);
+        b.addAccountToCollection(jane);
 
         assertEquals(john, b.getChequingAccountFromCollection(c1));
         assertEquals(jane, b.getChequingAccountFromCollection(c2));
@@ -48,8 +48,8 @@ public class BankAccountTest {
         ChequingAccount john2 = new ChequingAccount(c2, 1000, 10);
         BankAccount b = new BankAccClass();
 
-        b.addChequingAccountToCollection(john1);
-        b.addChequingAccountToCollection(john2);
+        b.addAccountToCollection(john1);
+        b.addAccountToCollection(john2);
 
         //only adds the first John Doe
         assertEquals(1, b.getChequingAccs().size());
@@ -65,8 +65,8 @@ public class BankAccountTest {
         SavingsAccount jane = new SavingsAccount(c2, 1000);
         BankAccount b = new BankAccClass();
 
-        b.addSavingsAccountToCollection(john);
-        b.addSavingsAccountToCollection(jane);
+        b.addAccountToCollection(john);
+        b.addAccountToCollection(jane);
         
         assertEquals(john, b.getSavingsAccountFromCollection(c1));
         assertEquals(jane, b.getSavingsAccountFromCollection(c2));
@@ -81,11 +81,28 @@ public class BankAccountTest {
         SavingsAccount john2 = new SavingsAccount(c2, 1000, 10);
         BankAccount b = new BankAccClass();
 
-        b.addSavingsAccountToCollection(john1);
-        b.addSavingsAccountToCollection(john2);
+        b.addAccountToCollection(john1);
+        b.addAccountToCollection(john2);
 
         //only adds the first John Doe
         assertEquals(1, b.getSavingsAccs().size());
     }
+
+    @Test
+    public void testAddAndGetChequingSavingsToCollection()
+    {
+        Customer c1 = new Customer("John Doe", 123);
+        Customer c2 = new Customer("Jane Doe", 321);
+        ChequingAccount john = new ChequingAccount(c1, 1000, 10);
+        SavingsAccount jane = new SavingsAccount(c2, 1000);
+        BankAccount b = new BankAccClass();
+
+        b.addAccountToCollection(john);
+        b.addAccountToCollection(jane);
+        
+        assertEquals(john, b.getChequingAccountFromCollection(c1));
+        assertEquals(jane, b.getSavingsAccountFromCollection(c2));
+    }
+
 
 }
