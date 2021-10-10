@@ -40,6 +40,23 @@ public class BankAccountTest {
     }
 
     @Test
+    public void testDuplicateCustomersInChequingCollection()
+    {
+        Customer c1 = new Customer("John Doe", 123);
+        Customer c2 = new Customer("John Doe", 123);
+        ChequingAccount john1 = new ChequingAccount(c1, 1000, 10);
+        ChequingAccount john2 = new ChequingAccount(c2, 1000, 10);
+        BankAccount b = new BankAccClass();
+
+        b.addChequingAccountToCollection(john1);
+        b.addChequingAccountToCollection(john2);
+
+        //only adds the first John Doe
+        assertEquals(1, b.getChequingAccs().size());
+    }
+
+
+    @Test
     public void testAddAndGetSavingsAccountToCollection()
     {
         Customer c1 = new Customer("John Doe", 123);
@@ -50,9 +67,25 @@ public class BankAccountTest {
 
         b.addSavingsAccountToCollection(john);
         b.addSavingsAccountToCollection(jane);
-
+        
         assertEquals(john, b.getSavingsAccountFromCollection(c1));
         assertEquals(jane, b.getSavingsAccountFromCollection(c2));
+    }
+
+    @Test
+    public void testDuplicateCustomersInSavingsCollection()
+    {
+        Customer c1 = new Customer("John Doe", 123);
+        Customer c2 = new Customer("John Doe", 123);
+        SavingsAccount john1 = new SavingsAccount(c1, 1000, 10);
+        SavingsAccount john2 = new SavingsAccount(c2, 1000, 10);
+        BankAccount b = new BankAccClass();
+
+        b.addSavingsAccountToCollection(john1);
+        b.addSavingsAccountToCollection(john2);
+
+        //only adds the first John Doe
+        assertEquals(1, b.getSavingsAccs().size());
     }
 
 }

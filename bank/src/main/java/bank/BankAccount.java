@@ -11,7 +11,6 @@ public abstract class BankAccount extends Customer {
 	private Customer accountHolder;
 	private List<ChequingAccount> cAccs = new ArrayList<ChequingAccount>();
     private List<SavingsAccount> sAccs = new ArrayList<SavingsAccount>();
-	// add account type
 
 	// Constructors
 	public BankAccount() {
@@ -74,6 +73,14 @@ public abstract class BankAccount extends Customer {
 		return accountNumber;
 	}
 
+	public List<ChequingAccount> getChequingAccs(){
+		return cAccs;
+	}
+
+	public List<SavingsAccount> getSavingsAccs(){
+		return sAccs;
+	}
+
 	//refactored: replace temp with query
 	//refactored: pull up method
 	double balance(double amount) {
@@ -132,11 +139,17 @@ public abstract class BankAccount extends Customer {
 
 	//refactored: Move method
 	public void addChequingAccountToCollection(ChequingAccount cAcc){
-        cAccs.add(cAcc);
+		//Check if not duplicate
+		Customer check = getChequingAccountFromCollection(cAcc.getAccountHolder());
+		if (check == null)
+        	cAccs.add(cAcc);
     }
 
     public void addSavingsAccountToCollection(SavingsAccount sAcc){
-        sAccs.add(sAcc);
+        //check if not duplicate
+		Customer check = getSavingsAccountFromCollection(sAcc.getAccountHolder());
+		if (check == null)
+			sAccs.add(sAcc);
     }
 
     public ChequingAccount getChequingAccountFromCollection(Customer c){
