@@ -1,11 +1,10 @@
 package bank;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.ArrayList;
-
-import org.junit.Test;
 
 public class CustomerTest {
     
