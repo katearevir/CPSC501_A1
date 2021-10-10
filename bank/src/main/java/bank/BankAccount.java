@@ -137,20 +137,23 @@ public abstract class BankAccount extends Customer {
 		}
 	}
 
-	//refactored: Move method
-	public void addChequingAccountToCollection(ChequingAccount cAcc){
-		//Check if not duplicate
-		Customer check = getChequingAccountFromCollection(cAcc.getAccountHolder());
-		if (check == null)
-        	cAccs.add(cAcc);
-    }
-
-    public void addSavingsAccountToCollection(SavingsAccount sAcc){
-        //check if not duplicate
-		Customer check = getSavingsAccountFromCollection(sAcc.getAccountHolder());
-		if (check == null)
-			sAccs.add(sAcc);
-    }
+	//refactored: move method
+	//refactored: form template method
+	public void addAccountToCollection(BankAccount acc)
+	{
+		if (acc instanceof ChequingAccount)
+		{
+			Customer check = getChequingAccountFromCollection(acc.getAccountHolder());
+			if (check == null)
+				cAccs.add((ChequingAccount) acc);
+		}
+		else if (acc instanceof SavingsAccount)
+		{
+			Customer check = getSavingsAccountFromCollection(acc.getAccountHolder());
+			if (check == null)
+				sAccs.add((SavingsAccount) acc);
+		}
+	}
 
     public ChequingAccount getChequingAccountFromCollection(Customer c){
         for(int i = 0; i < cAccs.size(); i++)
