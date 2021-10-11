@@ -1,0 +1,1 @@
+Visual Studio Code was used for this assignment, so I had to add the JUnit 5 dependencies manually to the Maven project.
